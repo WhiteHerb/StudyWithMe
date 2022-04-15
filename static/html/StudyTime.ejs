@@ -79,12 +79,15 @@
         </div>
       </div>
       <form action="/studytime/uploadtime" method="post">
-        이름 : <input type="text" name="name" id="name"> <br><br>
         <input type="number" name="timeH" id="timeH"> 시간
         <input type="number" name="timeM" id="timeM"> 분
         
         <br />
+        {% if(islogin){ %}
         <input type="submit" value="등록하기">
+        {% }else{ %}
+        
+        {% } %}
       </form>
       <script src="/js/writeTime.js"></script>
     </section>
