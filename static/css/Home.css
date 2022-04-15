@@ -103,7 +103,7 @@
   }
 
   .u-section-1 .u-btn-2 {
-    margin-left: 182px;
+    margin-left: 289px;
   }
 }
 
@@ -131,7 +131,7 @@
   }
 
   .u-section-1 .u-btn-2 {
-    margin-left: 49px;
+    margin-left: 289px;
   }
 }
 
@@ -157,6 +157,10 @@
 
   .u-section-1 .u-text-2 {
     font-size: 4.25rem;
+  }
+  
+  .u-section-1 .u-btn-2 {
+    margin-left: 0;
   }
 }
 

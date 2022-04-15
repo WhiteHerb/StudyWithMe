@@ -1,26 +1,12 @@
 const express = require('express')
-const router = express.Router();
-const axios = require('axios');
+const call = require('../modules/call')
 const qs = require("qs");
+const router = express.Router();
 
 const client_id = process.env['REST_SECRET'];
 const redirect_uri = 'https://studywith.kro.kr/kakologin/redirect';
 const token_uri = 'https://kauth.kakao.com/oauth/token';
 const client_secret = '';
-
-async function call(method, uri, param, header){
-    try {
-        rtn = await axios({
-            method: method,
-            url: uri,
-            headers: header,
-            data: param
-        })
-    } catch (err) {
-        rtn = err.response;
-    }
-    return rtn.data;
-}
 
 router.get('/authorize', function (req, res) {
     let { scope } = req.query;

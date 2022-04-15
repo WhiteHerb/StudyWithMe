@@ -1,32 +1,11 @@
 const express = require('express')
-const router = express.Router()
-const CryptoJS = require("crypto-js")
 const fs = require("fs")
-const axios = require('axios')
-
-const SECRET = process.env['SECRET']
+const decrypt = require('../modules/decrypt')
+const encrypt = require('../modules/encrypt')
+const call = require('../modules/call')
+const router = express.Router()
 
 const api_host = "https://kapi.kakao.com";
-
-async function call(method, uri, param, header){
-    try {
-        rtn = await axios({
-            method: method,
-            url: uri,
-            headers: header,
-            data: param
-        })
-    } catch (err) {
-        rtn = err.response;
-    }
-    return rtn.data;
-}
-
-function decrypt(data) {
-    var bytes = CryptoJS.AES.decrypt(data.toString(), SECRET)
-    var timedata = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
-    return timedata
-}
 
 Object.prototype.getKeyByValue = function( value ) {
     for( var prop in this ) {
@@ -80,8 +59,7 @@ router.post("/uploadtime",async (req,res) => {
       if(data.toString().length != 0) timedata = decrypt(data)
         const time = [min+hr*60,hr,min]
         timedata[name] = time
-        timedata_en = CryptoJS.AES.encrypt(JSON.stringify(timedata), SECRET).toString()
-      
+        timedata_en = encrypt(timedata)
         fs.writeFileSync("./static/data/studytime.json",timedata_en,(err) => {
             console.log(err);
             res.state(404)
