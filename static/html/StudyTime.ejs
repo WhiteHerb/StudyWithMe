@@ -83,11 +83,13 @@
         <input type="number" name="timeM" id="timeM"> 분
         
         <br />
-        {% if(islogin){ %}
+        <% if(islogin){ %>
         <input type="submit" value="등록하기">
-        {% }else{ %}
-        
-        {% } %}
+        <% }else{ %>
+        <a href="/kakologin/authorize">
+          <img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png">
+        </a>
+        <% } %>
       </form>
       <script src="/js/writeTime.js"></script>
     </section>

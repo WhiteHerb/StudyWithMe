@@ -4,7 +4,7 @@ const axios = require('axios');
 const qs = require("qs");
 
 const client_id = process.env['REST_SECRET'];
-const redirect_uri = 'http://localhost:4000/redirect';
+const redirect_uri = 'https://studywith.kro.kr/kakologin/redirect';
 const token_uri = 'https://kauth.kakao.com/oauth/token';
 const client_secret = '';
 
@@ -21,6 +21,15 @@ async function call(method, uri, param, header){
     }
     return rtn.data;
 }
+
+router.get('/authorize', function (req, res) {
+    let { scope } = req.query;
+    var scopeParam = "";
+    if (scope) {
+        scopeParam = "&scope=" + scope;
+    }
+    res.status(302).redirect(`https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code${scopeParam}`);
+})
 
 router.get('/redirect', async function (req, res) {
     const param = qs.stringify({
