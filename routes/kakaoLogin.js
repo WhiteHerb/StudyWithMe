@@ -31,15 +31,4 @@ router.get('/redirect', async function (req, res) {
     res.status(302).redirect('/');
 })
 
-// app.get('/profile', async function (req, res) {
-//     const uri = api_host + "/v2/user/me";
-//     const param = {};
-//     const header = {
-//         'content-Type': 'application/x-www-form-urlencoded',
-//         'Authorization': 'Bearer ' + req.session.key
-//     }
-//     var rtn = await call('POST', uri, param, header);
-//     res.send(rtn);
-// })
-
 module.exports = router

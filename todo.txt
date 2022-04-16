@@ -1,0 +1,5 @@
+admin.ejs 만들기 - remove form, data 화면
+
+community.ejs 만들기 - 게시물 리스트
+ 
+view.ejs 만들기 - 게시물 화면

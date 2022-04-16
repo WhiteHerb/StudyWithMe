@@ -20,6 +20,18 @@ router.get('/studytime/remove/:name',async (req,res) => {
     })
 })
 
-router.get('/')
+router.get('/',async (req,res) => {
+    var datas = new Array()
+    fs.readdir('/static/data/',(err, files) => {
+        files.forEach(file => {
+            fs.readFileSync(`/static/data/${file}`, (err,data) => {
+                decrypt(data,(data_) => {
+                    datas.push(data_)
+                })
+            })
+        })
+        res.render('admin.ejs',{datas : datas})
+    })
+})
 
 module.exports = router
