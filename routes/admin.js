@@ -8,12 +8,13 @@ router.get('/studytime/remove/:name',async (req,res) => {
     var params = req.params
     var name = params.name
     fs.readFile("../static/data/studytime.json", (err,data) => {
-        var timedata = decrypt(data)
-        delete timedata[name]
-        timedata_en = encrypt(timedata)
-        fs.writeFileSync("../static/data/studytime.json",timedata_en,(err) => {
-            console.log(err);
-            res.status(404).redirect('/')
+            decrypt(data,(timedata) => {
+            delete timedata[name]
+            timedata_en = encrypt(timedata)
+            fs.writeFileSync("../static/data/studytime.json",timedata_en,(err) => {
+                console.log(err);
+                res.status(404).redirect('/')
+            })
         })
         res.redirect("/studytime")
     })
