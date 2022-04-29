@@ -13,6 +13,10 @@ const corsOptions = {
     origin: 'http://localhost',
     credentials: true
 }
+let ejsOptions = {
+    async: true
+}
+  
 
 De.config()
 app.use(express.urlencoded())
@@ -27,6 +31,14 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
 }));
+app.engine('ejs', async (path, data, cb) => {
+    try{
+        let html = await ejs.renderFile(path, data, ejsOptions);
+        cb(null, html);
+    }catch (e){
+        cb(e, '');
+    }
+});
 
 app.use('/studytime',studytime)
 app.use('/kakologin',kakologin)
