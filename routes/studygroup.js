@@ -14,11 +14,6 @@ router.get('/', async (req,res) => {
     res.render('StudyGroup.html')
 })
 
-router.use('/community',(req,res) => {
-    if (req.session.key == undefined){
-        res.send('<script>alert("카카오 로그인이 필요합니다")</script>')
-        res.redirect('/kakologin/authorize')
-    }
-},studycommunity)
+router.use('/community',studycommunity)
 
 module.exports = router

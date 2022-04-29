@@ -6,6 +6,10 @@ const encrypt = require('../modules/encrypt')
 
 router.get('/',async (req,res) => {
     fs.readFile('/static/data/communitydata.json',(err,data) =>{
+        if (req.session.key == undefined){
+            res.send('<script>alert("카카오 로그인이 필요합니다")</script>')
+            res.redirect('/kakologin/authorize')
+        }
         decrypt(data,(data_) => {
             res.render("community.ejs",{views : Object.entries(data_)})
         })
