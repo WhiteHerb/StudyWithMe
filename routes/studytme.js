@@ -36,7 +36,7 @@ router.get("/", async (req,res) => {
         if (req.session.key) {
             var islogin = true
         }
-        res.render("StudyTime.ejs",{membersTime : datalist, islogin, islogin})
+        res.render("StudyTime.ejs",{membersTime : datalist, islogin: islogin})
     })
 })
 

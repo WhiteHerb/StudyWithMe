@@ -12,6 +12,10 @@ router.get('/',async (req,res) => {
     })
 })
 
+router.get('/form', async (req,res) => {
+    res.render('communityform')
+})
+
 router.post('/upload',async (req,res) => {
     const body = req.body
     const name = rtn_(req.session.key).properties.nickname
