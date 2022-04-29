@@ -5,15 +5,15 @@ const decrypt = require('../modules/decrypt')
 const encrypt = require('../modules/encrypt')
 
 router.get('/',async (req,res) => {
-    fs.readFile('/static/data/communitydata.json',(err,data) =>{
-        if (req.session.key == undefined){
-            res.send('<script>alert("카카오 로그인이 필요합니다")</script>')
-            return res.redirect('/kakologin/authorize')
-        }else{
-            decrypt(data,(data_) => {
-                res.render("community.ejs",{views : Object.entries(data_)})
-            })
+    if (req.session.key == undefined){
+      res.send('<script>alert("카카오 로그인이 필요합니다");window.location = "/kakologin/authorize"</script>')
         }
+    fs.readFile('/static/data/communitydata.json',(err,data) =>{
+        
+      decrypt(data,(data_) => {
+            res.render("community.ejs",{views : Object.entries(data_)})
+        })
+        
     })
 })
 
