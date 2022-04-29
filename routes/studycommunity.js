@@ -9,10 +9,11 @@ router.get('/',async (req,res) => {
         if (req.session.key == undefined){
             res.send('<script>alert("카카오 로그인이 필요합니다")</script>')
             return res.redirect('/kakologin/authorize')
+        }else{
+            decrypt(data,(data_) => {
+                res.render("community.ejs",{views : Object.entries(data_)})
+            })
         }
-        decrypt(data,(data_) => {
-            res.render("community.ejs",{views : Object.entries(data_)})
-        })
     })
 })
 
