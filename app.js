@@ -34,7 +34,7 @@ app.use('/admin',admin)
 app.use('/studygroup',studygroup)
 
 app.get("/",async (req,res) => {
-    res.sendFile("Home.html")
+    res.render("Home")
 })
 
 app.listen(port,() => {
