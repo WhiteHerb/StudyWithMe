@@ -3,7 +3,7 @@ const call = require('./call')
 const api_host = "https://kapi.kakao.com";
 const uri = api_host + "/v2/user/me";
 const param = {};
-function rtn_(key){
+async function rtn_(key){
     const header = {
         'content-Type': 'application/x-www-form-urlencoded',
         'Authorization': 'Bearer ' + key
