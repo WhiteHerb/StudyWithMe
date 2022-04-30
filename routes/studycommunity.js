@@ -31,7 +31,7 @@ router.post('/upload',async (req,res) => {
     const content = body.content
     fs.readFile('/static/data/communitydata.json',(err,data) => {
         decrypt(data, (data_) => {
-            data_[name] = [title,content]           //{이름 : [제목, 내용]}
+            data_[data_.keys().length] = [name,title,content,[]]        //{num : [name,제목, 내용,[ [name,content], [] ] ]}
             let data_en = encrypt(data_)
             fs.writeFileSync('/static/data/communitydata.json',data_en,(err) => {
                 console.log(err)
