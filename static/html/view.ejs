@@ -13,6 +13,9 @@
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i">
     
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
     
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -70,6 +73,25 @@
                     <small><%= content[1] %></small>
                     <% }) %>
                   </div>
+                  <div class="form-group">
+                    <label for="writer">작성자</label>
+                    <input type="text" class="form-control" id="writer"
+                     placeholder="작성자(2자-10자)" name="writer">
+                  </div>
+                  <button type="submit" class="btn btn-default">등록</button>
+              
+                <br />
+                  <br>
+                <% if(islogin){ %>
+                <input type="submit" value="등록하기">
+                <% }else{ %>
+                <a href="/kakologin/authorize">
+                  <img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png">
+                </a>
+                  <br>
+                  <small>카카오 로그인을 필요로하는 기능입니다</small>
+                <% } %>
+              </form>
           </div>
         </div>
       </div>
