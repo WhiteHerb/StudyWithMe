@@ -1,14 +1,15 @@
 const express = require('express')
 const session = require('express-session');
 const path = require("path")
-const app = express()
 const De = require('dotenv')
 const cors = require("cors")
-const port = 8080
 const studytime = require('./routes/studytme')
 const kakologin = require('./routes/kakaoLogin')
 const admin = require('./routes/admin')
 const studygroup = require('./routes/studygroup')
+const ejs = require('ejs')
+const app = express()
+const port = 8080
 const corsOptions = {
     origin: 'http://localhost',
     credentials: true

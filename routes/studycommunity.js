@@ -10,6 +10,7 @@ router.get('/',async (req,res) => {
     }
     fs.readFile('/static/data/communitydata.json',(err,data) =>{
         if(data == undefined){
+          console.log(data)
             res.render('community',{views : new Array()})
         }else{
             decrypt(data,(data_) => {
