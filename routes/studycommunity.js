@@ -20,6 +20,7 @@ router.get('/',async (req,res) => {
     if (req.session.key == undefined){
         res.send('<script>alert("카카오 로그인이 필요합니다");window.location = "/kakologin/authorize"</script>')
     }
+    refrashdata()
     res.render("community",{views : Object.entries(viewlist)})
     
 })
@@ -28,7 +29,7 @@ router.get('/form', async (req,res) => {
     if (req.session.key) {
         var islogin = true
     }
-    res.render('communityform',{islogin:islogin})
+    res.render('communityform.ejs',{islogin: islogin})
 })
 
 router.get('/:id',async (req,res) => {
@@ -36,7 +37,11 @@ router.get('/:id',async (req,res) => {
     if (req.session.key) {
         var islogin = true
     }
-    res.render('view',{islogin:islogin,view:viewlist[req.params.id]})
+    if(viewlist != undefined){
+        res.render('view.ejs',{islogin: islogin, view: viewlist[req.params.id]})
+    }else{
+        res.redirect('/')
+    }
 })
 
 router.post('/upload',async (req,res) => {
