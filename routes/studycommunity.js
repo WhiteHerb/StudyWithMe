@@ -4,7 +4,9 @@ const router = express.Router()
 const decrypt = require('../modules/decrypt')
 const encrypt = require('../modules/encrypt')
 let viewlist
-function refrashdata() {
+const rtn_ = require('../modules/callprofile')
+
+async function refrashdata() {
     fs.readFile('/static/data/communitydata.json',(err,data) =>{
         if(data == undefined){
             viewlist = {}
@@ -28,6 +30,8 @@ router.get('/',async (req,res) => {
 router.get('/form', async (req,res) => {
     if (req.session.key) {
         var islogin = true
+    }else{
+      var islogin = false
     }
     res.render('communityform.ejs',{islogin: islogin})
 })
@@ -36,6 +40,8 @@ router.get('/:id',async (req,res) => {
     
     if (req.session.key) {
         var islogin = true
+    }else{
+      var islogin = false
     }
     if(viewlist != undefined){
         res.render('view.ejs',{islogin: islogin, view: viewlist[req.params.id]})
@@ -46,7 +52,9 @@ router.get('/:id',async (req,res) => {
 
 router.post('/upload',async (req,res) => {
     const body = req.body
-    const name = rtn_(req.session.key).properties.nickname
+    let rtn = rtn_(req.session.key)
+    console.log(rtn)
+    const name = rtn.properties.nickname
     const title = body.title
     const content = body.content
     fs.readFile('/static/data/communitydata.json',(err,data) => {

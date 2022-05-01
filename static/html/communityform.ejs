@@ -21,7 +21,7 @@
 		"logo": "#"
 }</script>
     <meta name="theme-color" content="#3e588b">
-    <meta property="og:title" content="studytime">
+    <meta property="og:title" content="form">
     <meta property="og:type" content="website">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -56,6 +56,7 @@
     <section class="u-align-center u-clearfix u-palette-1-light-3 u-section-1" id="sec-1f05">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <h2 class="u-text u-text-default u-text-palette-1-base u-text-1">글쓰기</h2>
+        <br>
       <form action="/studygroup/community/upload" method="post"><div class="container">
           <div class="form-group">
             <label for="title">제목</label>
@@ -69,15 +70,11 @@
          <textarea class="form-control" rows="5" id="content"
           name="content" placeholder="내용 작성"></textarea>
        </div>
-          <div class="form-group">
-            <label for="writer">작성자</label>
-            <input type="text" class="form-control" id="writer"
-             placeholder="작성자(2자-10자)" name="writer">
           </div>
-          <button type="submit" class="btn btn-default">등록</button>
       
         <br />
           <br>
+        <% console.log(islogin) %>
         <% if(islogin){ %>
         <input type="submit" value="등록하기">
         <% }else{ %>

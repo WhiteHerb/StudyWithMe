@@ -34641,7 +34641,7 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-header .u-sheet-1 {
-  min-height: 80px;
+  min-height: 100px;
 }
 
 .u-header .u-image-1 {
@@ -34658,6 +34658,7 @@ a.u-link.u-text-hover-grey-90:hover {
   object-fit: cover;
   border-radius: 50px;
   position: absolute;
+  margin: -15px
 }
 
 .u-header .u-menu-1 {
