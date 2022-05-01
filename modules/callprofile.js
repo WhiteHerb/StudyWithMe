@@ -9,6 +9,7 @@ async function rtn_(key){
         'Authorization': 'Bearer ' + key
     }
     var rtn = await call('POST', uri, param, header);
+    return rtn
 }
 
 module.exports = rtn_

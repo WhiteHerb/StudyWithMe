@@ -3,8 +3,8 @@ const fs = require('fs')
 const router = express.Router()
 const decrypt = require('../modules/decrypt')
 const encrypt = require('../modules/encrypt')
-let viewlist
 const rtn_ = require('../modules/callprofile')
+let viewlist
 
 async function refrashdata() {
     fs.readFile('/static/data/communitydata.json',(err,data) =>{
@@ -23,7 +23,8 @@ router.get('/',async (req,res) => {
         res.send('<script>alert("카카오 로그인이 필요합니다");window.location = "/kakologin/authorize"</script>')
     }
     refrashdata()
-    res.render("community",{views : Object.entries(viewlist)})
+    let views = Object.entries(viewlist)
+    res.render("community",{views : views})
     
 })
 
@@ -44,7 +45,8 @@ router.get('/:id',async (req,res) => {
       var islogin = false
     }
     if(viewlist != undefined){
-        res.render('view.ejs',{islogin: islogin, view: viewlist[req.params.id]})
+        let view = viewlist[req.params.id]
+        res.render('view.ejs',{islogin: islogin, view: view})
     }else{
         res.redirect('/')
     }
