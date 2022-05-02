@@ -80,8 +80,10 @@
                   <div class="form-group">
                   <form>                    
                     <label for="writer">댓글</label>
-                    <input type="text" class="form-control" id="writer"
-                     placeholder="작성자(2자-10자)" name="writer">
+                    <input type="text" class="form-control" id="content"
+                      placeholder="제목 입력(4-100)" name="content"
+                      maxlength="100" required="required"
+                      pattern=".{4,100}">
                   </div>
               
                 <br />

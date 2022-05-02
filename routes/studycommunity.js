@@ -4,15 +4,14 @@ const router = express.Router()
 const decrypt = require('../modules/decrypt')
 const encrypt = require('../modules/encrypt')
 const rtn_ = require('../modules/callprofile')
-let viewlist
 
-async function refrashdata() {
+async function getviews() {
     fs.readFile('./static/data/communitydata.json',(err,data) =>{
         if(data == undefined){
             viewlist = {}
         }else{
             decrypt(data,(data_) => {
-                viewlist = data_
+                return data_
             })
         }
     })
@@ -23,7 +22,7 @@ router.get('/',async (req,res) => {
         res.send('<script>alert("카카오 로그인이 필요합니다");window.location = "/kakologin/authorize"</script>')
     }
     refrashdata()
-    let views = Object.entries(viewlist)
+    let views = Object.entries(await getviews)
     res.render("community",{views : views})
     
 })
@@ -45,7 +44,7 @@ router.get('/:id',async (req,res) => {
       var islogin = false
     }
     if(viewlist != undefined){
-        let view = viewlist[req.params.id]
+        let view = await getviews[req.params.id]
         res.render('view.ejs',{islogin: islogin, view: view})
     }else{
         res.redirect('/')
@@ -55,7 +54,6 @@ router.get('/:id',async (req,res) => {
 router.post('/upload',async (req,res) => {
     const body = req.body
     let rtn = await rtn_(req.session.key)
-    console.log(rtn)
     const name = rtn.properties.nickname
     const title = body.title
     const content = body.content
@@ -70,6 +68,21 @@ router.post('/upload',async (req,res) => {
             res.redirect('/studygroup/community')
         })
     })
+})
+
+router.post('/:id/upload',async (req,res) => {
+    const body = req.body
+    const view = await getviews[req.params.id]
+    let rtn = await rtn_(req.session.key)
+    const name = rtn.properties.nickname
+    const content = body.content
+    view[3].push([name,content])
+    let data_en = encrypt(view)
+    fs.writeFileSync('./static/data/communitydata.json',data_en,(err) => {
+        console.log(err)
+        res.status(404)
+    })
+    res.send('<script> window.location = document.referrer; </script>')
 })
 
 module.exports = router
