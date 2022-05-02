@@ -8,7 +8,7 @@ const rtn_ = require('../modules/callprofile')
 async function getviews() {
     fs.readFile('./static/data/communitydata.json',(err,data) =>{
         if(data == undefined){
-            viewlist = {}
+            return {}
         }else{
             decrypt(data,(data_) => {
                 return data_
@@ -43,8 +43,8 @@ router.get('/:id',async (req,res) => {
     }else{
       var islogin = false
     }
-    if(viewlist != undefined){
-        let view = await getviews[req.params.id]
+    let view = await getviews()[req.params.id]
+    if(view != undefined){
         res.render('view.ejs',{islogin: islogin, view: view})
     }else{
         res.redirect('/')
@@ -72,7 +72,8 @@ router.post('/upload',async (req,res) => {
 
 router.post('/:id/upload',async (req,res) => {
     const body = req.body
-    const view = await getviews[req.params.id]
+    const id = req.params.id
+    const view = await getviews()[id]
     let rtn = await rtn_(req.session.key)
     const name = rtn.properties.nickname
     const content = body.content
@@ -82,7 +83,7 @@ router.post('/:id/upload',async (req,res) => {
         console.log(err)
         res.status(404)
     })
-    res.send('<script> window.location = document.referrer; </script>')
+    res.send(`<script> window.location = "/studygroup/community/${id}" </script>`)
 })
 
 module.exports = router
