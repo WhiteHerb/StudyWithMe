@@ -7,7 +7,7 @@ const rtn_ = require('../modules/callprofile')
 let viewlist
 
 async function refrashdata() {
-    fs.readFile('/static/data/communitydata.json',(err,data) =>{
+    fs.readFile('./static/data/communitydata.json',(err,data) =>{
         if(data == undefined){
             viewlist = {}
         }else{
@@ -54,16 +54,16 @@ router.get('/:id',async (req,res) => {
 
 router.post('/upload',async (req,res) => {
     const body = req.body
-    let rtn = rtn_(req.session.key)
+    let rtn = await rtn_(req.session.key)
     console.log(rtn)
     const name = rtn.properties.nickname
     const title = body.title
     const content = body.content
-    fs.readFile('/static/data/communitydata.json',(err,data) => {
+    fs.readFile('./static/data/communitydata.json',(err,data) => {
         decrypt(data, (data_) => {
-            data_[data_.keys().length] = [name,title,content,[]]        //{num : [name,제목, 내용,[ [name,content], [] ] ]}
+            data_[Object.keys(data_).length] = [name,title,content,[]]        //{num : [name,제목, 내용,[ [name,content], [] ] ]}
             let data_en = encrypt(data_)
-            fs.writeFileSync('/static/data/communitydata.json',data_en,(err) => {
+            fs.writeFileSync('./static/data/communitydata.json',data_en,(err) => {
                 console.log(err)
                 res.status(404)
             })

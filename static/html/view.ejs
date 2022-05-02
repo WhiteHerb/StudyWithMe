@@ -73,12 +73,16 @@
                     <small><%= content[1] %></small>
                     <% }) %>
                   </div>
+          </div>
+        </div>
+      </div>
+      <form action="/studygroup/community/upload" method="post"><div class="container">
                   <div class="form-group">
-                    <label for="writer">작성자</label>
+                  <form>                    
+                    <label for="writer">댓글</label>
                     <input type="text" class="form-control" id="writer"
                      placeholder="작성자(2자-10자)" name="writer">
                   </div>
-                  <button type="submit" class="btn btn-default">등록</button>
               
                 <br />
                   <br>
@@ -91,15 +95,13 @@
                   <br>
                   <small>카카오 로그인을 필요로하는 기능입니다</small>
                 <% } %>
+                  </div>
               </form>
-          </div>
-        </div>
-      </div>
+                  </div>
       <script src="/js/writeTime.js"></script>
     </section>
-    <br>
-    <a href="/studygroup/tip" class="u-border-2 u-border-palette-1-base u-btn u-button-style u-hover-palette-1-base u-none u-text-black u-text-hover-white u-btn-1">팁 보러가기</a>
-        <p class="u-small-text u-text u-text-variant u-text-1">Made by Herb in 집현전</p>
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-3e8e"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">Made by Herb</p>
       </div></footer>
   </body>
 </html>
