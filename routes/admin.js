@@ -20,17 +20,40 @@ router.get('/studytime/remove/:name',async (req,res) => {
     })
 })
 
+router.get('/community/remove/:id',async (req,res) => {
+    var params = req.params
+    var name = params.id
+    fs.readFile("./static/data/communitydata.json", (err,data) => {
+            decrypt(data,(timedata) => {
+            delete timedata[name]
+            timedata_en = encrypt(timedata)
+            fs.writeFileSync("./static/data/communitydata.json",timedata_en,(err) => {
+                console.log(err);
+                res.status(404).redirect('/')
+            })
+      res.send(timedata)
+        })
+    })
+})
+
 router.get('/',async (req,res) => {
     var datas = new Array()
-    fs.readdir('/static/data/',(err, files) => {
+    fs.readdir('./static/data',(err, files) => {
         files.forEach(file => {
-            fs.readFileSync(`/static/data/${file}`, (err,data) => {
-                decrypt(data,(data_) => {
-                    datas.push(data_)
+            fs.readFile(`./static/data/${file}`, (err,data) => {
+              console.log(err)  
+      console.log(file)
+              try{
+                  decrypt(data,(data_) => {
+                        datas.push(data_)
+                        console.log(data_)
                 })
+              }catch(error){
+                  console.log(data)
+              }
             })
+          
         })
-        res.render('admin.ejs',{datas : datas})
     })
 })
 

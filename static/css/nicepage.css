@@ -34753,6 +34753,25 @@ input[type=number]{
 .commentinput{
   margin: auto;
 }
+
+.contentform {
+  text-align: left;
+}
+
+.content {
+  margin-left: 10px; 
+}
+
+.contentdiv {
+  background-color: #c0cfec;
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: 20px;
+  
+}
+
+
       
  /*begin-variables base-font-size*/ 
  html { font-size: 16px; }

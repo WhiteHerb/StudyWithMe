@@ -68,26 +68,28 @@
               <div class="u-container-layout u-similar-container u-container-layout-2">
                 <div class="u-border-8 u-border-palette-1-light-2 u-line u-line-horizontal u-line-2">
                   <p class="u-text u-text-4"> <%= view[2] %> </p>
-                  <% view[3].forEach(content => { %>
-                <h4 class="u-text u-text-default u-text-palette-1-base u-text-4"><%= content[0] %></h4>
-                    <small><%= content[1] %></small>
-                    <% }) %>
                   </div>
           </div>
         </div>
       </div>
-      <form action="/studygroup/community/upload" method="post"><div class="container">
-                  <div class="form-group">
-                  <form>                    
+      <form action=<%= "/studygroup/community/" + id + "/upload"%> method="post"><div class="container contentform">
+                  <div class="form-group contentdiv">                    
                     <label for="writer">댓글</label>
+                  <div class="form-group contentdiv">                    
+                  
+                  <% view[3].forEach(content => { %>
+                <h4 class="u-text u-text-default u-text-palette-1-base u-text-4"><%= content[0] %></h4>
+                    <small class="content"><%= content[1] %></small>
+                    <% }) %>
+                  </div>
+                      
+                      <br>
+                      <br>
                     <input type="text" class="form-control" id="content"
                       placeholder="제목 입력(4-100)" name="content"
                       maxlength="100" required="required"
-                      pattern=".{4,100}">
-                  </div>
-              
+                      >
                 <br />
-                  <br>
                 <% if(islogin){ %>
                 <input type="submit" value="등록하기">
                 <% }else{ %>
@@ -97,6 +99,7 @@
                   <br>
                   <small>카카오 로그인을 필요로하는 기능입니다</small>
                 <% } %>
+                  </div>
                   </div>
               </form>
                   </div>
