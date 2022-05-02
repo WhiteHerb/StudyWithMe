@@ -34747,11 +34747,11 @@ input[type=number]{
 }
 
 .commentlabel {
-  
+  margin: auto;
 }
 
 .commentinput{
-  
+  margin: auto;
 }
       
  /*begin-variables base-font-size*/ 
