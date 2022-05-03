@@ -36,6 +36,23 @@ router.get('/community/remove/:id',async (req,res) => {
     })
 })
 
+router.get('/community/remove/:id/:contentid',async (req,res) => {
+    var params = req.params
+    var name = params.id
+    var contentid = params.contentid
+    fs.readFile("./static/data/communitydata.json", (err,data) => {
+            decrypt(data,(timedata) => {
+            delete timedata[name][3][contentid]
+            timedata_en = encrypt(timedata)
+            fs.writeFileSync("./static/data/communitydata.json",timedata_en,(err) => {
+                console.log(err);
+                res.status(404).redirect('/')
+            })
+      res.send(timedata)
+        })
+    })
+})
+
 router.get('/',async (req,res) => {
     var datas = new Array()
     fs.readdir('./static/data',(err, files) => {
