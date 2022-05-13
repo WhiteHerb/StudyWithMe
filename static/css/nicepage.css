@@ -34771,7 +34771,13 @@ input[type=number]{
   
 }
 
+.u-text-4 {
+  font-size: 20px;
+}
 
+u-layout-row{
+  flex-wrap: wrap;
+}
       
  /*begin-variables base-font-size*/ 
  html { font-size: 16px; }
