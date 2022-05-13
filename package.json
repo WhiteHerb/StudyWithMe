@@ -18,7 +18,12 @@
     "express-session": "^1.17.2",
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
+<<<<<<< Updated upstream
     "qs": "^6.10.3",
     "request": "^2.88.2"
+=======
+    "python-shell": "^3.0.1",
+    "qs": "^6.10.3"
+>>>>>>> Stashed changes
   }
 }

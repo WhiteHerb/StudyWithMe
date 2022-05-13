@@ -1,6 +1,9 @@
 from winotify import Notification
 from bs4 import BeautifulSoup as bs
 import requests
+from pystray import MenuItem as item
+import pystray
+from PIL import Image
 
 url = 'https://www.megastudy.net/'
 url_ = 'https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=blMy&qvt=0&query=%EA%B3%B5%EB%B6%80%20%EB%AA%85%EC%96%B8'
@@ -22,4 +25,15 @@ toast = Notification(app_id = "수능까지",
                      -{writer}-
                      ''')
 
-toast.build().show()
+def showalerm() :
+    toast.build().show()
+
+def noneact() :
+    return
+
+
+
+image = Image.open("./static/image/logo.png")
+menu = (item("알림",showalerm,default=True),)
+icon_ = pystray.Icon('알리미',image,f"{date} \n {text} \n - {writer} -",menu)
+icon_.run()
